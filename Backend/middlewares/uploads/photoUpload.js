@@ -1,4 +1,4 @@
-const multer = require("multer");
+ multer = require("multer");
 const sharp = require("sharp");
 const path = require("path");
 //storage
@@ -26,7 +26,7 @@ const photoUpload = multer({
   limits: { fileSize: 1000000 },
 });
 
-//Image Resizing
+//Image Resizingconst
 const profilePhotoResize = async (req, res, next) => {
   //check if there is no file
   if (!req.file) return next();

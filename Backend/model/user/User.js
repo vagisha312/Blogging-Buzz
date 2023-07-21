@@ -101,6 +101,12 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+userSchema.virtual("posts", {
+  ref: "Post",
+  foreignField: "user",
+  localField: "_id",
+});
+
 //hashing
 userSchema.pre("save",async function(next){          // This line registers a pre-save middleware function for the "save" event in the user schema. It means that this function will be executed automatically just before saving a user object to the database.
   const salt=await bcrypt.genSalt(10);                        //This line generates a salt using the bcrypt library. A salt is a random string used as an additional input during the hashing process to increase the security of the password. The genSalt function takes a cost factor as an argument, which determines the computational complexity of the hashing algorithm. In this case, the cost factor is set to 10.
