@@ -6,6 +6,7 @@ const nodemailer=require("nodemailer");
 const cloudinaryUploadImg = require("../../utils/cloudinary");
 const Mailgen=require("mailgen");
 const crypto = require("crypto");
+const fs = require("fs");
 
 //-------------------------------------
 //Register
@@ -403,7 +404,9 @@ const profilePhotoUploadCtrl = expressAsyncHandler(async (req, res) => {
     },
     { new: true }
   );
-  res.json(foundUser);
+  //res.json(foundUser);
+  res.json(imgUploaded);
+  fs.unlinkSync(localPath);
 });
 
 
