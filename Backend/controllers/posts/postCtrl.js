@@ -10,7 +10,7 @@ const cloudinaryUploadImg = require("../../utils/cloudinary");
 //CREATE POST
 //----------------------------------------------------------------
 const createPostCtrl = expressAsyncHandler(async (req, res) => {
-  console.log(req.file);
+  console.log(req.body);
   const { _id } = req.user;
   //   validateMongodbId(req.body.user);
   //Check for bad words
@@ -26,19 +26,19 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
     );
   }
 
-  //1. Get the oath to img
+  // //1. Get the path to img
   const localPath = `public/images/posts/${req.file.filename}`;
-  //2.Upload to cloudinary
+  // //2.Upload to cloudinary
   const imgUploaded = await cloudinaryUploadImg(localPath);
   try {
-    // const post = await Post.create({
-    //   ...req.body,
-    //   image: imgUploaded?.url,
-    //   user: _id,
-    // });
-    res.json(imgUploaded);
+    const post = await Post.create({
+      ...req.body,
+      user: _id,
+      image: imgUploaded?.url,
+    });
     //Remove uploaded img
     fs.unlinkSync(localPath);
+    res.json(post);
   } catch (error) {
     res.json(error);
   }
@@ -48,10 +48,21 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
 //Fetch al posts
 //-------------------------------
 const fetchPostsCtrl = expressAsyncHandler(async (req, res) => {
+  const hasCategory = req.query.category;
   try {
-    const posts = await Post.find({}).populate("user").populate("likes").populate("dislikes");
-    res.json(posts);
-  } catch (error) {}
+    //Check if it has a category
+    if (hasCategory) {
+      const posts = await Post.find({ category: hasCategory })
+        .populate("user")
+        .populate("comments");
+      res.json(posts);
+    } else {
+      const posts = await Post.find({}).populate("user").populate("comments");
+      res.json(posts);
+    }
+  } catch (error) {
+    res.json(error);
+  }
 });
 
 //------------------------------
@@ -62,7 +73,11 @@ const fetchPostCtrl = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongodbId(id);
   try {
-    const post = await Post.findById(id).populate("user");
+    const post = await Post.findById(id)
+      .populate("user")
+      .populate("disLikes")
+      .populate("likes")
+      .populate("comments");
     //update number of views
     await Post.findByIdAndUpdate(
       id,
@@ -190,7 +205,7 @@ const toggleAddDislikeToPostCtrl = expressAsyncHandler(async (req, res) => {
   );
   //Remove this user from likes array if it exists
   if (alreadyLiked) {
-    const post = await Post.findByIdAndUpdate(
+    const post = await Post.findOneAndUpdate(
       postId,
       {
         $pull: { likes: loginUserId },
