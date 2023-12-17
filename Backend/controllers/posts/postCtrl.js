@@ -5,13 +5,15 @@ const Post = require("../../model/post/Post");
 const validateMongodbId = require("../../utils/validateMongodbID");
 const User = require("../../model/user/User");
 const cloudinaryUploadImg = require("../../utils/cloudinary");
+const blockUser=require("../../utils/blockUser");
 
 //----------------------------------------------------------------
 //CREATE POST
 //----------------------------------------------------------------
 const createPostCtrl = expressAsyncHandler(async (req, res) => {
-  console.log(req.body);
   const { _id } = req.user;
+  //block user
+  blockUser(req.user);
   //   validateMongodbId(req.body.user);
   //Check for bad words
   const filter = new Filter();
@@ -54,10 +56,10 @@ const fetchPostsCtrl = expressAsyncHandler(async (req, res) => {
     if (hasCategory) {
       const posts = await Post.find({ category: hasCategory })
         .populate("user")
-        .populate("comments");
+        .populate("comments").sort("-createdAt");
       res.json(posts);
     } else {
-      const posts = await Post.find({}).populate("user").populate("comments");
+      const posts = await Post.find({}).populate("user").populate("comments").sort("-createdAt");
       res.json(posts);
     }
   } catch (error) {

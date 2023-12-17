@@ -1,10 +1,18 @@
 const expressAsyncHandler = require("express-async-handler");
 const sgMail = require("@sendgrid/mail");
+const Filter = require("bad-words");
 const EmailMsg = require("../../model/EmailMessaging/EmailMessaging");
 
 const sendEmailMsgCtrl = expressAsyncHandler(async (req, res) => {
-  console.log(req.user);
   const { to, subject, message } = req.body;
+  //get the message
+  const emailMessage = subject + " " + message;
+  //prevent profanity/bad words
+  const filter = new Filter();
+
+  const isProfane = filter.isProfane(emailMessage);
+  if (isProfane)
+    throw new Error("Email sent failed, because it contains profane words.");
   try {
     //buld up msg
     const msg = {

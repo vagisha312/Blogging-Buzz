@@ -10,19 +10,13 @@ const formSchema = Yup.object({
   subject: Yup.string().required("Subject is required"),
   message: Yup.string().required("Message is required"),
 });
-const SendEmail = ({
-  location: {
-    state: { email },
-  },
-}) => {
-  console.log(email);
+const SendEmail = ({ location: { state } }) => {
   //dispath
   const dispatch = useDispatch();
-
   //formik
   const formik = useFormik({
     initialValues: {
-      recipientEmail: email,
+      recipientEmail: state?.email,
       subject: "",
       message: "",
     },
@@ -32,6 +26,12 @@ const SendEmail = ({
     },
     validationSchema: formSchema,
   });
+  //select data from store
+  const sendMail = useSelector(state => state?.sendMail);
+  const { mailSent, loading, appErr, serverErr, isMailSent } = sendMail;
+  console.log(isMailSent);
+  //redirect
+  if (isMailSent) return <Redirect to={`/profile/${state?.id}`} />;
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -41,8 +41,12 @@ const SendEmail = ({
           <span className="text-green-300">email title</span>
         </h2>
 
-        <p className="mt-2 text-center text-sm text-gray-600">
-          {/* Display err here */}
+        <p className="mt-2 text-center text-lg text-red-500">
+          {serverErr || appErr ? (
+            <h2>
+              {serverErr} {appErr}
+            </h2>
+          ) : null}
         </p>
         <p className="mt-2 text-center text-sm text-gray-600">
           {/* {emailSent && <div>Sent</div>} */}
@@ -127,12 +131,21 @@ const SendEmail = ({
             </div>
             {/* Submit btn */}
             <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Send
-              </button>
+              {loading ? (
+                <button
+                  disabled
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 "
+                >
+                  Loading please wait...
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Send
+                </button>
+              )}
             </div>
           </form>
         </div>
