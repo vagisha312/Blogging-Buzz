@@ -1,40 +1,43 @@
-# Blogging Buzz
+# Blogging-Buzz
 
-Blogging-Buzz allows users to create, share, interact with content, and build a community around posts and 
-profiles.
+Blogging-Buzz allows users to create, share, interact with content, and build a community around posts and
+profiles. 
 
 # Project Stack
 
-Frontend: : Redux, Tailwind CSS, React.js
+Frontend :  Redux, Tailwind CSS, React.js
 
-Backend:  Node.js, Express.js, MongoDB, Authentication and Security.
+Backend : Node.js, Express.js, MongoDB,Authentication and Security    
 
 ## Run Locally
 
-#### Clone the Project
+#### Clone the project
 
-http
+```http
 git clone https://github.com/vagisha312/Blogging-Buzz
+```
 
+#### Go to the project directory
 
-#### Go to the Project Directory
-
-http
+```http
 cd Blogging-Buzz
-
+```
 #### Start Frontend
 
-http
-cd my-frontend
+```http
+cd frontend
 yarn add npm
 yarn start
-
+```
 #### Start Backend
 
-http
-cd Backend
-yarn add npm
+```http
+cd backend
 yarn server
+```
+
+
+
 
 # ScreenShots
 
