@@ -44,17 +44,30 @@ yarn server
 ### Register and Login Page
 ![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/30262d14-82da-4fdc-9038-fcd9fdf1b5e7)
 ![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/ba32b04c-e766-43c3-8cfa-f4fe87f3d91c)
+
 ### Profile Page
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/b3e5d7d3-441c-4d2b-95bb-234a0fa5a5ef)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/d8c7eec8-3392-4b0a-9f6b-a75a4e2fbc47)
+
 ### Post Page
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/ae00fd15-18d3-4091-b046-3d2f88175e9e)
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/0f0e0b7c-28d7-4dc3-b1b3-10be2d842c29)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/f685b452-0a0c-4898-b777-a66098f0f725)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/1ed1bb19-e30a-4d13-8fc4-e82f4c472653)
+
 ### Create Post
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/706e6e2d-d48a-4988-b282-47393e399262)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/e3242cfe-4137-4c1c-90ca-098422e3cf54)
+
 ### Update Profile
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/1bebda83-80ea-4395-85ac-9b7f2b51580f)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/d6187035-8f52-4662-8fe4-875646974b2f)
+
 ### Category Page
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/9ab3219f-5b4b-42af-84c5-0cac4af49c27)
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/30ee1bf6-6870-4ea8-b8e5-9e7ce0922e18)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/01b1ffe3-7fac-4598-babe-95b1d59b2148)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/3922b1e3-3e96-4ed4-ac7e-2a6c81c3ac8d)
+
 ### Responsive
-![image](https://github.com/ojas1888/Blogging-Buzz/assets/108984783/4349b85e-239f-4c69-9d9c-16ef0d82d864)
+![image](https://github.com/vagisha312/Blogging-Buzz/assets/108082732/162eae91-7753-47c7-ba0b-9236d040dd15)
+
+## Contributer
+
+- [Ojas Srivastava](https://github.com/ojas1888)
+
+
+
