@@ -1,49 +1,19 @@
 {
-    "routes": [
-         <AdminRoute
-          exact
-          "src"="/update-category/:id"
-          "dest"={UpdateCategory}
-        />
-        <AdminRoute exact "src"="/users" "dest"={UsersList} />
-        <PrivateProtectRoute
-          exact
-          "src"="/upload-profile-photo"
-          "dest"={UploadProfilePhoto}
-        />
-
-        <PrivateProtectRoute
-        exact
-        "src"="/update-password"
-       "dest"={UpdatePassword}
-        />
-                
-        <PrivateProtectRoute exact path="/send-mail" "dest"={SendEmail} />
-        <PrivateProtectRoute
-          exact
-         "src"="/update-profile/:id"
-          "dest"={UpdateProfileForm}
-        />
-        <PrivateProtectRoute
-          exact
-          "src"="/update-post/:id"
-          "dest"={UpdatePost}
-        />
-        <PrivateProtectRoute exact "src"="/profile/:id" "dest"={Profile} />
-        <PrivateProtectRoute exact "src"="/create-post" "dest"={CreatePost} />
-        <PrivateProtectRoute
-          exact
-          "src"="/update-comment/:id"
-          "dest"={UpdateComment}
-        />
-        <AdminRoute exact "src"="/add-category" "dest"={AddNewCategory} />
-        <Route exact "src"="/posts" "dest"={PostsList} />
-        <Route exact "src"="/posts/:id" "dest"={PostDetails} />
-        <AdminRoute exact "src"="/category-list" "dest"={CategoryList} />
-        <Route exact "src"="/" "dest"={HomePage} />
-        <Route exact "src"="/register" "dest"={Register} />
-        <Route exact "src"="/login" "dest"={Login} />
-
-        
-    ]
+  "version": 2,
+  "name": "my-react-app",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
